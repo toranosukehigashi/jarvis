@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JARVIS for CA ｜ IT×キャリア支援トレーニング</title>
+<meta name="description" content="IT業界のローキャリア層を支援するキャリアアドバイザーのためのトレーニングアプリ">
+<meta name="theme-color" content="#02060C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JARVIS">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<script>
+  // ▼ ここにGASのWebアプリURL（https://script.google.com/macros/s/…/exec）を貼り付け
+  var APP_URL = 'ここにGASのWebアプリURLを貼り付け';
+</script>
+<style>
+  html,body{margin:0;height:100%;background:#02060C;overflow:hidden;font-family:-apple-system,'Hiragino Sans',sans-serif;color:#E2F3FC}
+  #wrap{position:fixed;inset:0;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);box-sizing:border-box}
+  iframe{display:block;width:100%;height:100%;border:0;background:#02060C}
+  #splash{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#0E2A40,#02060C 70%);transition:opacity .6s;z-index:2}
+  #splash.out{opacity:0;pointer-events:none}
+  #splash img{width:120px;height:120px;border-radius:28px;animation:b 1.8s ease-in-out infinite;box-shadow:0 0 50px rgba(61,225,255,.45)}
+  #splash p{margin:18px 0 0;text-align:center;font-size:12px;letter-spacing:.4em;color:#9FF2FF}
+  #setup{display:none;max-width:520px;margin:12vh auto;padding:24px;line-height:1.9;font-size:14px}
+  #setup code{background:#0B1E33;padding:2px 6px;color:#9FF2FF}
+  @keyframes b{50%{transform:scale(1.05);box-shadow:0 0 80px rgba(61,225,255,.7)}}
+</style>
+</head>
+<body>
+<div id="wrap"></div>
+<div id="splash"><div><img src="icon-192.png" alt=""><p>J.A.R.V.I.S.</p></div></div>
+<div id="setup"><b>セットアップが必要です</b><br>このファイル（index.html）の <code>APP_URL</code> に、Apps Script の「ウェブアプリ」のURL（…/exec）を貼り付けてください。</div>
+<script>
+(function(){
+  var ok=/^https:\/\/script\.google\.com\/.+\/exec/.test(APP_URL);
+  var sp=document.getElementById('splash');
+  if(!ok){ sp.classList.add('out'); document.getElementById('setup').style.display='block'; return; }
+  var f=document.createElement('iframe');
+  f.src=APP_URL; f.title='JARVIS'; f.allow='clipboard-write; autoplay';
+  f.onload=function(){ setTimeout(function(){ sp.classList.add('out'); },400); };
+  document.getElementById('wrap').appendChild(f);
+  setTimeout(function(){ sp.classList.add('out'); },6000);
+})();
+</script>
+</body>
+</html>
